@@ -1,113 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modern Aura</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Aura</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #0a0a0a; color: white; }
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #000000, #1a1a1a);
+      text-align: center;
+    }
+    header h1 { font-size: 3rem; letter-spacing: 2px; }
+    header p { margin-top: 10px; font-size: 1.2rem; color: #aaa; }
+    header button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      border: none;
+      background: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: 0.3s;
+    }
+    header button:hover { background: #ddd; }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    .products {
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .products h2 { margin-bottom: 30px; }
 
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Poppins', sans-serif; background: #0a0a0a; color: white; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
 
-header {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #000, #1a1a1a);
-}
-header h1 { font-size: 3rem; }
-header p { color: #aaa; margin-top: 10px; }
+    .card {
+      background: #111;
+      padding: 15px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; border-radius: 10px; }
+    .card h3 { margin: 10px 0; }
+    .card p { color: #aaa; }
+    .card button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      background: white;
+      color: black;
+      border-radius: 20px;
+      cursor: pointer;
+    }
 
-header button {
-  margin-top: 20px;
-  padding: 12px 30px;
-  border: none;
-  background: white;
-  color: black;
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-.products { padding: 50px 20px; text-align: center; }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  background: #111;
-  padding: 15px;
-  border-radius: 15px;
-  transition: 0.3s;
-}
-.card:hover { transform: translateY(-5px); }
-
-.slider {
-  position: relative;
-  overflow: hidden;
-}
-.slider img {
-  width: 100%;
-  display: none;
-  border-radius: 10px;
-}
-.slider img.active { display: block; }
-
-.dots {
-  text-align: center;
-  margin-top: 5px;
-}
-.dots span {
-  height: 6px;
-  width: 6px;
-  background: #555;
-  display: inline-block;
-  border-radius: 50%;
-  margin: 2px;
-}
-.dots .active { background: white; }
-
-.card h3 { margin: 10px 0; }
-.card p { color: #aaa; }
-
-.buy-btn, .upi-btn {
-  margin-top: 8px;
-  padding: 10px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  width: 100%;
-}
-
-.buy-btn { background: white; color: black; }
-.upi-btn { background: #00ffcc; color: black; font-weight: bold; }
-
-.note {
-  font-size: 12px;
-  color: #888;
-}
-
-.stock {
-  color: #ff4d4d;
-  font-size: 13px;
-  margin-top: 5px;
-}
-
-footer {
-  padding: 20px;
-  text-align: center;
-  background: #000;
-  color: #777;
-}
-</style>
+    footer {
+      padding: 20px;
+      text-align: center;
+      background: #000;
+      color: #777;
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
@@ -118,98 +82,49 @@ footer {
 
 <section class="products" id="products">
   <h2>Our Collection</h2>
-
   <div class="grid">
 
-    <!-- PRODUCT -->
     <div class="card">
-      <div class="slider">
-        <img src="Front_1_c_18.jpg" class="active">
-        <img src="back1.jpg">
-        <img src="model1.jpg">
-      </div>
-
-      <div class="dots"></div>
-
-      <h3>Dark Aura Tee</h3>
-      <p>₹449</p>
-
-      <div class="stock">🔥 Only 5 left</div>
-
-      <button class="buy-btn" onclick="openInstagram()">Buy via Instagram</button>
-      <button class="upi-btn" onclick="payUPI('Dark Aura Tee',449)">Pay via UPI</button>
-
-      <div class="note">DM @wearmodernaura to order</div>
+      <img src="Front_1_c_18.jpg" alt="T-shirt">
+      <h3>Dark Aura Unisex Acidwashed Tee</h3>
+      <p>₹450</p>
+      <button onclick="buyNow('Dark Aura Tee')">Buy Now</button>
     </div>
+
+    <div class="card">
+      <img src="Front_1_c_2.jpg" alt="T-shirt">
+      <h3>Plain Dark Oversized Tee</h3>
+      <p>₹450</p>
+      <button onclick="buyNow('Minimal Soul Tee')">Buy Now</button>
+    </div>
+
+    <div class="card">
+      <img src="Front_1_c_4.jpg"" alt="T-shirt">
+      <h3>Fahh Unisex Oversized Tee</h3>
+      <p>₹450</p>
+      <button onclick="buyNow('Chaos Mind Tee')">Buy Now</button>
+  
 
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Modern Aura</p>
+  <p>© 2026 Modern Aura. All rights reserved.</p>
 </footer>
 
 <script>
+
 function scrollToProducts() {
   document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
 }
 
-// AUTO SLIDER + DOTS + SWIPE
-document.querySelectorAll('.card').forEach(card => {
-  const slider = card.querySelector('.slider');
-  const images = slider.querySelectorAll('img');
-  const dotsContainer = card.querySelector('.dots');
-
-  let index = 0;
-
-  images.forEach((_, i) => {
-    const dot = document.createElement('span');
-    if(i === 0) dot.classList.add('active');
-    dotsContainer.appendChild(dot);
-  });
-
-  const dots = dotsContainer.querySelectorAll('span');
-
-  function showSlide(i) {
-    images.forEach(img => img.classList.remove('active'));
-    dots.forEach(d => d.classList.remove('active'));
-
-    images[i].classList.add('active');
-    dots[i].classList.add('active');
-  }
-
-  // AUTO SLIDE
-  setInterval(() => {
-    index = (index + 1) % images.length;
-    showSlide(index);
-  }, 3000);
-
-  // SWIPE SUPPORT
-  let startX = 0;
-  slider.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-  });
-
-  slider.addEventListener('touchend', e => {
-    let endX = e.changedTouches[0].clientX;
-
-    if(startX > endX + 50) {
-      index = (index + 1) % images.length;
-    } else if(startX < endX - 50) {
-      index = (index - 1 + images.length) % images.length;
-    }
-    showSlide(index);
-  });
-});
-
-function openInstagram() {
-  window.open("https://www.instagram.com/wearmodernaura/", "_blank");
+function buyNow(product) {
+  alert('DM us on Instagram to order: ' + product);
 }
-
-function payUPI(product, price) {
-  const upiID = "7078817575@ybl"; // replace
-  const name = "Modern Aura";
-  window.location.href = `upi://pay?pa=${upiID}&pn=${name}&am=${price}&cu=INR&tn=${product}`;
+function buyNow(product) {
+  const username = "wearmodernaura"; // replace with your IG username
+  const message = encodeURIComponent(`Hi, I want to order: ${product}`);
+  window.open(`https://www.instagram.com/wearmodernaura/?text=${I want to buy your product}`, "_blank");
 }
 </script>
 
