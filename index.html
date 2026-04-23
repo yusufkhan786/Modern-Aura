@@ -1,121 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modern Aura</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Aura</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">      fit the code in it 
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #0a0a0a; color: white; }
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #000000, #1a1a1a);
+      text-align: center;
+    }
+    header h1 { font-size: 3rem; letter-spacing: 2px; }
+    header p { margin-top: 10px; font-size: 1.2rem; color: #aaa; }
+    header button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      border: none;
+      background: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: 0.3s;
+    }
+    header button:hover { background: #ddd; }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    .products {
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .products h2 { margin-bottom: 30px; }
 
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #0a0a0a;
-  color: white;
-}
+    .card {
+      background: #111;
+      padding: 15px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; border-radius: 10px; }
+    .card h3 { margin: 10px 0; }
+    .card p { color: #aaa; }
+    .card button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      background: white;
+      color: black;
+      border-radius: 20px;
+      cursor: pointer;
+    }
 
-/* HEADER */
-header {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #000000, #1a1a1a);
-  text-align: center;
-}
-
-header h1 { font-size: 3rem; letter-spacing: 2px; }
-header p { margin-top: 10px; color: #aaa; }
-
-header button {
-  margin-top: 20px;
-  padding: 12px 30px;
-  border: none;
-  background: white;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 30px;
-}
-
-/* 🔥 SLIDER */
-.slider {
-  max-width: 900px;
-  margin: 40px auto;
-  overflow: hidden;
-  border-radius: 20px;
-  position: relative;
-}
-
-.slides {
-  display: flex;
-  transition: 0.5s ease;
-}
-
-.slides img {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-}
-
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  border: none;
-  color: white;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-.prev { left: 10px; }
-.next { right: 10px; }
-
-/* PRODUCTS */
-.products {
-  padding: 50px 20px;
-  text-align: center;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  background: #111;
-  padding: 15px;
-  border-radius: 10px;
-}
-
-.card img { width: 100%; border-radius: 10px; }
-
-.card button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  border: none;
-  background: white;
-  color: black;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-/* FOOTER */
-footer {
-  padding: 20px;
-  text-align: center;
-  background: #000;
-  color: #777;
-}
-</style>
+    footer {
+      padding: 20px;
+      text-align: center;
+      background: #000;
+      color: #777;
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
@@ -124,75 +80,51 @@ footer {
   <button onclick="scrollToProducts()">Shop Now</button>
 </header>
 
-<!-- 🔥 IMAGE SLIDER -->
-<div class="slider">
-  <div class="slides" id="slides">
-    <img src="Front_1_c_18.jpg">
-    <img src="Front_1_c_2.jpg">
-    <img src="Front_1_c_4.jpg">
-  </div>
-
-  <button class="prev" onclick="moveSlide(-1)">❮</button>
-  <button class="next" onclick="moveSlide(1)">❯</button>
-</div>
-
 <section class="products" id="products">
   <h2>Our Collection</h2>
-
   <div class="grid">
 
     <div class="card">
-      <img src="Front_1_c_18.jpg">
-      <h3>Dark Aura Tee</h3>
+      <img src="Front_1_c_18.jpg" alt="T-shirt">
+      <h3>Dark Aura Unisex Acidwashed Tee</h3>
       <p>₹449</p>
       <button onclick="buyNow('Dark Aura Tee')">Buy Now</button>
     </div>
 
     <div class="card">
-      <img src="Front_1_c_2.jpg">
-      <h3>Minimal Soul Tee</h3>
+      <img src="Front_1_c_2.jpg" alt="T-shirt">
+      <h3>Plain Dark Oversized Tee</h3>
       <p>₹399</p>
       <button onclick="buyNow('Minimal Soul Tee')">Buy Now</button>
     </div>
 
     <div class="card">
-      <img src="Front_1_c_4.jpg">
-      <h3>Fahh Tee</h3>
+      <img src="Front_1_c_4.jpg"" alt="T-shirt">
+      <h3>Fahh Unisex Oversized Tee</h3>
       <p>₹399</p>
-      <button onclick="buyNow('Fahh Tee')">Buy Now</button>
-    </div>
+      <button onclick="buyNow('Chaos Mind Tee')">Buy Now</button>
+  
 
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Modern Aura</p>
+  <p>© 2026 Modern Aura. All rights reserved.</p>
 </footer>
 
 <script>
-// scroll
+
 function scrollToProducts() {
   document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
 }
 
-// 🔥 SLIDER JS
-let index = 0;
-const slides = document.getElementById("slides");
-const totalSlides = slides.children.length;
-
-function moveSlide(step) {
-  index = (index + step + totalSlides) % totalSlides;
-  slides.style.transform = `translateX(-${index * 100}%)`;
-}
-
-// auto slide
-setInterval(() => moveSlide(1), 3000);
-
-// 🔥 BUY BUTTON (Instagram DM FIXED)
 function buyNow(product) {
-  const username = "wearmodernaura";
+  alert('DM us on Instagram to order: ' + product);
+}
+function buyNow(product) {
+  const username = "wearmodernaura"; // replace with your IG username
   const message = encodeURIComponent(`Hi, I want to order: ${product}`);
-  window.open(`https://instagram.com/${username}?utm_source=ig_web_copy_link`, "_blank");
+  window.open(`https://www.instagram.com/wearmodernaura/?text=${I want to buy your product}`, "_blank");
 }
 </script>
 
