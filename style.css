@@ -1,0 +1,22 @@
+.slider {
+  position: relative;
+}
+
+.slider img {
+  width: 100%;
+  display: none;
+  border-radius: 10px;
+}
+
+.slider img.active {
+  display: block;
+}
+
+.buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
