@@ -1,138 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modern Aura</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">      fit the code in it 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #0a0a0a; color: white; }
-    header {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #000000, #1a1a1a);
-      text-align: center;
-    }
-    header h1 { font-size: 3rem; letter-spacing: 2px; }
-    header p { margin-top: 10px; font-size: 1.2rem; color: #aaa; }
-    header button {
-      margin-top: 20px;
-      padding: 12px 30px;
-      border: none;
-      background: white;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 30px;
-      transition: 0.3s;
-    }
-    header button:hover { background: #ddd; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Aura</title>
 
-    .products {
-      padding: 50px 20px;
-      text-align: center;
-    }
-    .products h2 { margin-bottom: 30px; }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    .card {
-      background: #111;
-      padding: 15px;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
-    .card:hover { transform: translateY(-5px); }
-    .card img { width: 100%; border-radius: 10px; }
-    .card h3 { margin: 10px 0; }
-    .card p { color: #aaa; }
-    .card button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      border: none;
-      background: white;
-      color: black;
-      border-radius: 20px;
-      cursor: pointer;
-    }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0a0a0a;
+  color: white;
+}
 
-    footer {
-      padding: 20px;
-      text-align: center;
-      background: #000;
-      color: #777;
-    }
-  </style>
+/* HEADER */
+header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #000000, #1a1a1a);
+  text-align: center;
+  background-attachment: fixed;
+}
+
+header h1 { font-size: 3rem; letter-spacing: 2px; }
+header p { margin-top: 10px; color: #aaa; }
+
+header button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  border: none;
+  background: white;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+header button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 20px rgba(255,255,255,0.2);
+}
+
+/* PRODUCTS */
+.products {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* PREMIUM CARD */
+.card {
+  background: #111;
+  padding: 15px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(255,255,255,0.05);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.4s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.card h3 { margin: 10px 0; }
+.card p { color: #aaa; }
+
+.card button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  background: white;
+  color: black;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card button:hover {
+  transform: scale(1.05);
+}
+
+/* ANIMATION */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* WHATSAPP FLOAT */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  font-size: 22px;
+  padding: 15px 18px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 1000;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); }
+  70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* FOOTER */
+footer {
+  padding: 20px;
+  text-align: center;
+  background: #000;
+  color: #777;
+}
+</style>
 </head>
+
 <body>
 
-<header>
+<header class="fade-up">
   <h1>Modern Aura</h1>
   <p>Wear Your Aura</p>
   <button onclick="scrollToProducts()">Shop Now</button>
+  <button onclick="openInstagram()">Instagram</button>
 </header>
 
 <section class="products" id="products">
-  <h2>Our Collection</h2>
+  <h2 class="fade-up">Our Collection</h2>
+
   <div class="grid">
 
-    <div class="card">
-      <img src="Front_1_c_18.jpg" alt="T-shirt">
-      <h3>Dark Aura Unisex Acidwashed Tee</h3>
+    <div class="card fade-up">
+      <img src="Front_1_c_18.jpg">
+      <h3>Dark Aura Tee</h3>
       <p>₹449</p>
       <button onclick="buyNow('Dark Aura Tee')">Buy Now</button>
     </div>
 
-    <div class="card">
-      <img src="Front_1_c_2.jpg" alt="T-shirt">
-      <h3>Plain Dark Oversized Tee</h3>
+    <div class="card fade-up">
+      <img src="Front_1_c_2.jpg">
+      <h3>Minimal Soul Tee</h3>
       <p>₹399</p>
       <button onclick="buyNow('Minimal Soul Tee')">Buy Now</button>
     </div>
 
-    <div class="card">
-      <img src="Front_1_c_4.jpg"" alt="T-shirt">
-      <h3>Fahh Unisex Oversized Tee</h3>
+    <div class="card fade-up">
+      <img src="Front_1_c_4.jpg">
+      <h3>Fahh Tee</h3>
       <p>₹399</p>
-      <button onclick="buyNow('Chaos Mind Tee')">Buy Now</button>
+      <button onclick="buyNow('Fahh Tee')">Buy Now</button>
+    </div>
 
-      <div class="card">
-      <img src="Front_1_c_3.jpg" alt="T-shirt">
-      <h3>67 Dark Oversized Tee</h3>
+    <div class="card fade-up">
+      <img src="Front_1_c_3.jpg">
+      <h3>67 Oversized Tee</h3>
       <p>₹449</p>
-      <button onclick="buyNow('Minimal Soul Tee')">Buy Now</button>
+      <button onclick="buyNow('67 Tee')">Buy Now</button>
     </div>
-  
 
   </div>
 </section>
 
 <footer>
-  <p>© 2026 Modern Aura. All rights reserved.</p>
+  <p>© 2026 Modern Aura</p>
 </footer>
 
-<script>
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/917078817575?text=Hi%20I%20want%20to%20order%20a%20tshirt"
+   class="whatsapp-float" target="_blank">💬</a>
 
+<script>
+// scroll
 function scrollToProducts() {
   document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
 }
 
+// WhatsApp order
+
 function buyNow(product) {
-  alert('DM us on Instagram to order: ' + product);
-}
-function buyNow(product) {
-  const username = "wearmodernaura"; // replace with your IG username
+  const phone = "917078817575";
   const message = encodeURIComponent(`Hi, I want to order: ${product}`);
-  window.open(`https://www.instagram.com/wearmodernaura/?text=${I want to buy your product}`, "_blank");
+  window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
 }
+function openInstagram() {
+  window.open("https://instagram.com/wearmodernaura", "_blank");
+}
+
+// scroll animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 
 </body>
