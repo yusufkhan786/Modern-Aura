@@ -1,0 +1,23 @@
+{
+  "name": "modern-aura",
+  "version": "1.0.0",
+  "description": "Modern Aura - Wear Your Aura",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusufkhan786/Modern-Aura.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yusufkhan786/Modern-Aura/issues"
+  },
+  "homepage": "https://github.com/yusufkhan786/Modern-Aura#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
