@@ -18,10 +18,10 @@ header {
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #000, #1a1a1a);
-  text-align: center;
 }
 header h1 { font-size: 3rem; }
 header p { color: #aaa; margin-top: 10px; }
+
 header button {
   margin-top: 20px;
   padding: 12px 30px;
@@ -43,10 +43,15 @@ header button {
 .card {
   background: #111;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 15px;
+  transition: 0.3s;
 }
+.card:hover { transform: translateY(-5px); }
 
-.slider { position: relative; }
+.slider {
+  position: relative;
+  overflow: hidden;
+}
 .slider img {
   width: 100%;
   display: none;
@@ -54,51 +59,43 @@ header button {
 }
 .slider img.active { display: block; }
 
-.buttons {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
+.dots {
+  text-align: center;
+  margin-top: 5px;
 }
-.buttons button {
-  background: rgba(0,0,0,0.6);
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
+.dots span {
+  height: 6px;
+  width: 6px;
+  background: #555;
+  display: inline-block;
+  border-radius: 50%;
+  margin: 2px;
 }
+.dots .active { background: white; }
 
 .card h3 { margin: 10px 0; }
 .card p { color: #aaa; }
 
-.buy-btn {
-  margin-top: 10px;
-  padding: 10px 20px;
+.buy-btn, .upi-btn {
+  margin-top: 8px;
+  padding: 10px;
   border: none;
-  background: white;
-  color: black;
   border-radius: 20px;
   cursor: pointer;
   width: 100%;
 }
 
-.upi-btn {
-  margin-top: 8px;
-  padding: 10px;
-  background: #00ffcc;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  width: 100%;
-  color: black;
-  font-weight: bold;
-}
+.buy-btn { background: white; color: black; }
+.upi-btn { background: #00ffcc; color: black; font-weight: bold; }
 
 .note {
   font-size: 12px;
   color: #888;
+}
+
+.stock {
+  color: #ff4d4d;
+  font-size: 13px;
   margin-top: 5px;
 }
 
@@ -124,65 +121,23 @@ footer {
 
   <div class="grid">
 
-    <!-- PRODUCT 1 -->
+    <!-- PRODUCT -->
     <div class="card">
       <div class="slider">
         <img src="Front_1_c_18.jpg" class="active">
         <img src="back1.jpg">
         <img src="model1.jpg">
-        <div class="buttons">
-          <button onclick="prevSlide(this)">◀</button>
-          <button onclick="nextSlide(this)">▶</button>
-        </div>
       </div>
 
-      <h3>Dark Aura Acidwashed Tee</h3>
+      <div class="dots"></div>
+
+      <h3>Dark Aura Tee</h3>
       <p>₹449</p>
 
-      <button class="buy-btn" onclick="openInstagram('Dark Aura Tee')">Buy via Instagram</button>
+      <div class="stock">🔥 Only 5 left</div>
+
+      <button class="buy-btn" onclick="openInstagram()">Buy via Instagram</button>
       <button class="upi-btn" onclick="payUPI('Dark Aura Tee',449)">Pay via UPI</button>
-
-      <div class="note">DM @wearmodernaura to order</div>
-    </div>
-
-    <!-- PRODUCT 2 -->
-    <div class="card">
-      <div class="slider">
-        <img src="Front_1_c_2.jpg" class="active">
-        <img src="back2.jpg">
-        <img src="model2.jpg">
-        <div class="buttons">
-          <button onclick="prevSlide(this)">◀</button>
-          <button onclick="nextSlide(this)">▶</button>
-        </div>
-      </div>
-
-      <h3>Plain Dark Oversized Tee</h3>
-      <p>₹399</p>
-
-      <button class="buy-btn" onclick="openInstagram('Plain Dark Tee')">Buy via Instagram</button>
-      <button class="upi-btn" onclick="payUPI('Plain Dark Tee',399)">Pay via UPI</button>
-
-      <div class="note">DM @wearmodernaura to order</div>
-    </div>
-
-    <!-- PRODUCT 3 -->
-    <div class="card">
-      <div class="slider">
-        <img src="Front_1_c_4.jpg" class="active">
-        <img src="back3.jpg">
-        <img src="model3.jpg">
-        <div class="buttons">
-          <button onclick="prevSlide(this)">◀</button>
-          <button onclick="nextSlide(this)">▶</button>
-        </div>
-      </div>
-
-      <h3>Fahh Oversized Tee</h3>
-      <p>₹399</p>
-
-      <button class="buy-btn" onclick="openInstagram('Fahh Tee')">Buy via Instagram</button>
-      <button class="upi-btn" onclick="payUPI('Fahh Tee',399)">Pay via UPI</button>
 
       <div class="note">DM @wearmodernaura to order</div>
     </div>
@@ -199,32 +154,62 @@ function scrollToProducts() {
   document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
 }
 
-function nextSlide(btn) {
-  let slider = btn.closest('.slider');
-  let imgs = slider.querySelectorAll('img');
-  let index = [...imgs].findIndex(img => img.classList.contains('active'));
-  imgs[index].classList.remove('active');
-  imgs[(index + 1) % imgs.length].classList.add('active');
-}
+// AUTO SLIDER + DOTS + SWIPE
+document.querySelectorAll('.card').forEach(card => {
+  const slider = card.querySelector('.slider');
+  const images = slider.querySelectorAll('img');
+  const dotsContainer = card.querySelector('.dots');
 
-function prevSlide(btn) {
-  let slider = btn.closest('.slider');
-  let imgs = slider.querySelectorAll('img');
-  let index = [...imgs].findIndex(img => img.classList.contains('active'));
-  imgs[index].classList.remove('active');
-  imgs[(index - 1 + imgs.length) % imgs.length].classList.add('active');
-}
+  let index = 0;
 
-function openInstagram(product) {
-  const username = "wearmodernaura";
-  window.open(`https://www.instagram.com/${username}/`, "_blank");
+  images.forEach((_, i) => {
+    const dot = document.createElement('span');
+    if(i === 0) dot.classList.add('active');
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.querySelectorAll('span');
+
+  function showSlide(i) {
+    images.forEach(img => img.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+
+    images[i].classList.add('active');
+    dots[i].classList.add('active');
+  }
+
+  // AUTO SLIDE
+  setInterval(() => {
+    index = (index + 1) % images.length;
+    showSlide(index);
+  }, 3000);
+
+  // SWIPE SUPPORT
+  let startX = 0;
+  slider.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener('touchend', e => {
+    let endX = e.changedTouches[0].clientX;
+
+    if(startX > endX + 50) {
+      index = (index + 1) % images.length;
+    } else if(startX < endX - 50) {
+      index = (index - 1 + images.length) % images.length;
+    }
+    showSlide(index);
+  });
+});
+
+function openInstagram() {
+  window.open("https://www.instagram.com/wearmodernaura/", "_blank");
 }
 
 function payUPI(product, price) {
-  const upiID = "yourupi@upi"; // 🔥 replace this
+  const upiID = "7078817575@ybl"; // replace
   const name = "Modern Aura";
-  const url = `upi://pay?pa=${upiID}&pn=${name}&am=${price}&cu=INR&tn=${product}`;
-  window.location.href = url;
+  window.location.href = `upi://pay?pa=${upiID}&pn=${name}&am=${price}&cu=INR&tn=${product}`;
 }
 </script>
 
