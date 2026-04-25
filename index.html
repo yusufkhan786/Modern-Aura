@@ -1,251 +1,1047 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modern Aura</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Aura - Wear Your Aura</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    html {
+      scroll-behavior: smooth;
+    }
 
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0f0f0f;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #0a0a0a;
-  color: white;
-}
+    /* UTILITY */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-/* HEADER */
-header {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #000000, #1a1a1a);
-  text-align: center;
-  background-attachment: fixed;
-}
+    section {
+      padding: 60px 0;
+    }
 
-header h1 { font-size: 3rem; letter-spacing: 2px; }
-header p { margin-top: 10px; color: #aaa; }
+    h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      text-align: center;
+      letter-spacing: -1px;
+    }
 
-header button {
-  margin-top: 20px;
-  padding: 12px 30px;
-  border: none;
-  background: white;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 30px;
-  transition: 0.3s;
-}
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-header button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 20px rgba(255,255,255,0.2);
-}
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
 
-/* PRODUCTS */
-.products {
-  padding: 50px 20px;
-  text-align: center;
-}
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
 
-/* PREMIUM CARD */
-.card {
-  background: #111;
-  padding: 15px;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
 
-.card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 10px 30px rgba(255,255,255,0.05);
-}
+    .animate-on-scroll {
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
 
-.card img {
-  width: 100%;
-  border-radius: 10px;
-  transition: transform 0.4s ease;
-}
+    /* NAVBAR */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      background: rgba(15, 15, 15, 0.98);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-.card:hover img {
-  transform: scale(1.05);
-}
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      animation: slideIn 0.6s ease-out;
+    }
 
-.card h3 { margin: 10px 0; }
-.card p { color: #aaa; }
+    .nav-tagline {
+      font-size: 13px;
+      color: #999;
+      font-weight: 300;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      animation: slideInRight 0.6s ease-out 0.1s forwards;
+      opacity: 0;
+    }
 
-.card button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  border: none;
-  background: white;
-  color: black;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+    /* HERO SECTION */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      position: relative;
+      overflow: hidden;
+    }
 
-.card button:hover {
-  transform: scale(1.05);
-}
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -100px;
+      right: -100px;
+      animation: float 6s ease-in-out infinite;
+    }
 
-/* ANIMATION */
-.fade-up {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
-}
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1s ease-out;
+    }
 
-.fade-up.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .hero h1 {
+      font-size: clamp(48px, 10vw, 96px);
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+      line-height: 1.1;
+    }
 
-/* WHATSAPP FLOAT */
-.whatsapp-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  color: white;
-  font-size: 22px;
-  padding: 15px 18px;
-  border-radius: 50%;
-  text-decoration: none;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  z-index: 1000;
-  animation: pulse 2s infinite;
-}
+    .hero .subtitle {
+      font-size: clamp(16px, 4vw, 24px);
+      color: #aaa;
+      margin-bottom: 40px;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); }
-  70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
-  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
-}
+    .cta-btn {
+      padding: 16px 50px;
+      font-size: 16px;
+      background: #ffffff;
+      color: #000;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+      letter-spacing: 0.5px;
+      box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
+    }
 
-/* FOOTER */
-footer {
-  padding: 20px;
-  text-align: center;
-  background: #000;
-  color: #777;
-}
-</style>
+    .cta-btn:hover {
+      background: #ddd;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 50px rgba(255, 255, 255, 0.2);
+    }
+
+    /* FEATURED SLIDER */
+    .featured-slider {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .slider-container {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1a1a1a;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7);
+    }
+
+    .slide-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      padding: 40px 30px;
+      text-align: left;
+      color: #fff;
+    }
+
+    .slide-overlay h3 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .slide-overlay p {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+
+    .slider-btn {
+      padding: 10px 30px;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+
+    .slider-btn:hover {
+      background: #ddd;
+      transform: translateX(5px);
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .slider-arrow:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .slider-arrow.left {
+      left: 20px;
+    }
+
+    .slider-arrow.right {
+      right: 20px;
+    }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: #fff;
+      width: 30px;
+      border-radius: 5px;
+    }
+
+    /* PRODUCTS SECTION */
+    .products-section {
+      background: #0f0f0f;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .product-card {
+      background: #1a1a1a;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 15px 50px rgba(255, 255, 255, 0.1);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 300px;
+      background: #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 25px;
+    }
+
+    .product-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .product-price {
+      font-size: 20px;
+      color: #ccc;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .product-btn {
+      width: 100%;
+      padding: 12px;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .product-btn:hover {
+      background: #ddd;
+      transform: translateY(-2px);
+    }
+
+    /* ABOUT SECTION */
+    .about-section {
+      background: #1a1a1a;
+    }
+
+    .about-content {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .about-content p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #bbb;
+      margin-bottom: 30px;
+      letter-spacing: 0.3px;
+    }
+
+    .about-highlight {
+      display: inline-block;
+      color: #fff;
+      font-weight: 600;
+      border-bottom: 2px solid #fff;
+    }
+
+    /* HOW TO ORDER */
+    .how-to-section {
+      background: #0f0f0f;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .step {
+      text-align: center;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 auto 20px;
+    }
+
+    .step h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .step p {
+      color: #999;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-section {
+      background: #1a1a1a;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .testimonial {
+      background: #0f0f0f;
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .stars {
+      color: #ffd700;
+      font-size: 14px;
+      margin-bottom: 15px;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-text {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #bbb;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: #fff;
+      font-size: 15px;
+    }
+
+    .testimonial-title {
+      color: #999;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0a0a0a;
+      padding: 50px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 20px;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-section p {
+      color: #999;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: #999;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+      padding-left: 5px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: #666;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 13px;
+    }
+
+    /* FLOATING ACTION BUTTONS */
+    .floating-buttons {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 999;
+    }
+
+    .float-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 24px;
+      border: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .float-btn:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .float-btn:hover {
+      transform: scale(1.15);
+    }
+
+    .instagram-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+    }
+
+    .whatsapp-btn {
+      background: #25d366;
+      color: #fff;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 0;
+      }
+
+      section {
+        padding: 40px 0;
+      }
+
+      h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+      }
+
+      .hero {
+        height: 70vh;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero .subtitle {
+        font-size: 16px;
+      }
+
+      .cta-btn {
+        padding: 14px 35px;
+      }
+
+      .featured-slider {
+        margin: 0 15px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .slider-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+
+      .floating-buttons {
+        bottom: 20px;
+        right: 20px;
+        gap: 12px;
+      }
+
+      .float-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      section {
+        padding: 30px 0;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .hero {
+        height: 60vh;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .cta-btn {
+        padding: 12px 30px;
+        font-size: 14px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        width: 95%;
+      }
+    }
+  </style>
+  <head>
+    <meta charset="UTF-8">
+    <title>Modern Aura</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 </head>
 
 <body>
+  <!-- NAVBAR -->
+<nav class="top-bar">
+  <div class="logo">MODERN AURA</div>
+</nav>
 
-<header class="fade-up">
-  <h1>Modern Aura</h1>
-  <p>Wear Your Aura</p>
-  <button onclick="scrollToProducts()">Shop Now</button>
-  <button onclick="openInstagram()">Instagram</button>
-</header>
-
-<section class="products" id="products">
-
-  <!-- ₹399 SECTION -->
-  <h2 class="fade-up">₹399 Collection</h2>
-
-  <div class="grid">
-
-    <div class="card fade-up">
-      <img src="Front_1_c_2.jpg">
-      <h3>Dark Oversized Tee</h3>
-      <p>₹399</p>
-      <button onclick="buyNow('Minimal Soul Tee')">Buy Now</button>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Wear Your Aura</h1>
+      <p class="subtitle">Minimal. Aesthetic. You.</p>
+      <button class="cta-btn" onclick="scrollToSection('products')">Shop Now</button>
     </div>
+  </section>
 
-    <div class="card fade-up">
-      <img src="Front_1_c_4.jpg">
-      <h3>Fahh Tee</h3>
-      <p>₹399</p>
-      <button onclick="buyNow('Fahh Tee')">Buy Now</button>
+  <!-- PRODUCTS SECTION -->
+  <section id="products" class="products-section">
+    <div class="container">
+      <h2>Our Collection</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image">
+          <img src="Black.jpg" alt="Classic Black Oversized Tee">
+          </div>
+          <div class="product-info">
+            <div class="product-name">Classic Black Oversized Tee</div>
+            <div class="product-price">₹399</div>
+            <button class="product-btn" onclick="contactViaInstagram()">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+          <img src="Fahhh.jpg" alt="Fahhh Oversized Tee">
+          </div>
+          <div class="product-info">
+            <div class="product-name">Fahhh Oversized Tee</div>
+            <div class="product-price">₹399</div>
+            <button class="product-btn" onclick="contactViaInstagram()">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+          <img src="Money1.jpg" alt="Money Oversized Tee">
+          </div>
+          <div class="product-info">
+            <div class="product-name">Money Oversized Tee</div>
+            <div class="product-price">₹449</div>
+            <button class="product-btn" onclick="contactViaInstagram()">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+          <img src="Lesbian_Defence_1.jpg" alt="Lesbian Defence Tee">
+          </div>
+          <div class="product-info">
+            <div class="product-name">Lesbian Defence Tee</div>
+            <div class="product-price">₹399</div>
+            <button class="product-btn" onclick="contactViaInstagram()">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="67.jpg" alt="67 Oversized Tee">
+          </div>
+          <div class="product-info">
+            <div class="product-name">67 Oversized Tee</div>
+            <div class="product-price">₹449</div>
+            <button class="product-btn" onclick="contactViaInstagram()">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="Gangster.jpg" alt="Gangster Oversized Tee">
+          </div>
+          <div class="product-info">
+            <div class="product-name">Gangster Oversized Tee</div>
+            <div class="product-price">₹449</div>
+            <button class="product-btn" onclick="contactViaInstagram()">Buy Now</button>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="card fade-up">
-      <img src="Lesbian_Defence_1.jpg">
-      <h3>Lesbian Defence Tee</h3>
-      <p>₹399</p>
-      <button onclick="buyNow('Lesbian Defence Tee')">Buy Now</button>
+  <!-- ABOUT SECTION -->
+  <section class="about-section">
+    <div class="container">
+      <h2>About Us</h2>
+      <div class="about-content">
+        <p>
+          <span class="about-highlight">Modern Aura</span> is about expressing your vibe through minimal streetwear. Every piece is designed to match your energy.
+        </p>
+        <p style="color: #888; font-size: 16px;">
+          We believe fashion is personal. Our oversized tees are more than clothing—they're a statement. Minimal design, maximum impact.
+        </p>
+      </div>
     </div>
+  </section>
 
+  <!-- HOW TO ORDER -->
+  <section class="how-to-section">
+    <div class="container">
+      <h2>How to Order</h2>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Choose Your Tee</h3>
+          <p>Browse our collection and pick your favorite from our premium oversized collection.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>DM Us</h3>
+          <p>Reach out to us @wearmodernaura on Instagram with your choice and size.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Pay Via UPI</h3>
+          <p>Make payment through UPI. Fast, secure, and hassle-free transaction.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Get Delivered</h3>
+          <p>We'll ship your order and keep you updated every step of the way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="container">
+      <h2>What Gen Z Says</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"literally the best oversized fit I've owned. the quality is insane and the vibe is immaculate 🖤"</p>
+          <div class="testimonial-author">Sarah</div>
+          <div class="testimonial-title">Delhi, India</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Modern Aura understood the assignment. Premium quality at affordable prices. This is the energy ✨"</p>
+          <div class="testimonial-author">Priya</div>
+          <div class="testimonial-title">Mumbai, India</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"No cap, these tees hit different. The minimalist aesthetic is exactly what my wardrobe needed 🔥"</p>
+          <div class="testimonial-author">Aditya</div>
+          <div class="testimonial-title">Bangalore, India</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"the packaging is gorgeous and the fit??? chef's kiss 💯 will definitely order again"</p>
+          <div class="testimonial-author">Zara</div>
+          <div class="testimonial-title">Hyderabad, India</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Finally found a brand that gets streetwear. Been wearing mine every day since it arrived. Highly recommend! 🖤"</p>
+          <div class="testimonial-author">Rohan</div>
+          <div class="testimonial-title">Pune, India</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Modern Aura is giving luxury streetwear energy at prices that actually make sense. obsessed 😭✨"</p>
+          <div class="testimonial-author">Maya</div>
+          <div class="testimonial-title">Chennai, India</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Modern Aura</h4>
+          <p>Premium minimal streetwear for those who understand the assignment.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="#products" onclick="event.preventDefault(); scrollToSection('products')">Shop</a>
+            <a href="#" onclick="event.preventDefault(); contactViaInstagram()">DM to Order</a>
+            <a href="#" onclick="event.preventDefault(); contactViaWhatsApp()">WhatsApp Us</a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Payment</h4>
+          <p>💳 UPI Payments Accepted</p>
+          <p style="margin-top: 15px;">Fast, secure transactions with instant confirmation.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Connect With Us</h4>
+          <div class="footer-links">
+            <a href="https://instagram.com/wearmodernaura" target="_blank">📸 Instagram @wearmodernaura</a>
+            <a href="#" onclick="event.preventDefault(); contactViaWhatsApp()">💬 WhatsApp Chat</a>
+            <a href="#" onclick="event.preventDefault(); contactViaInstagram()">📧 DM on Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Modern Aura. All rights reserved. | Wear Your Aura™</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING ACTION BUTTONS -->
+  <div class="floating-buttons">
+    <button class="float-btn instagram-btn" title="DM on Instagram" onclick="contactViaInstagram()">📸</button>
+    <button class="float-btn whatsapp-btn" title="Chat on WhatsApp" onclick="contactViaWhatsApp()">💬</button>
   </div>
 
-  <!-- spacing -->
-  <div style="height:50px;"></div>
+  <script>
+    // SLIDER FUNCTIONALITY
+    let currentSlide = 0;
+    const totalSlides = document.querySelectorAll('.slide').length;
+    const slider = document.getElementById('slider');
+    const dots = document.getElementById('dots');
 
-  <!-- ₹449 SECTION -->
-  <h2 class="fade-up">₹449 Collection</h2>
-
-  <div class="grid">
-
-    <div class="card fade-up">
-      <img src="Front_1_c_18.jpg">
-      <h3>Dark Aura Tee</h3>
-      <p>₹449</p>
-      <button onclick="buyNow('Dark Aura Tee')">Buy Now</button>
-    </div>
-
-    <div class="card fade-up">
-      <img src="Front_1_c_3.jpg">
-      <h3>67 Oversized Tee</h3>
-      <p>₹449</p>
-      <button onclick="buyNow('67 Tee')">Buy Now</button>
-    </div>
-
-  </div>
-
-</section>
-
-<footer>
-  <p>© 2026 Modern Aura</p>
-</footer>
-
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/917078817575?text=Hi%20I%20want%20to%20order%20a%20tshirt"
-   class="whatsapp-float" target="_blank">💬</a>
-
-<script>
-// scroll
-function scrollToProducts() {
-  document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-}
-
-// WhatsApp order
-
-function buyNow(product) {
-  const phone = "917078817575";
-  const message = encodeURIComponent(`Hi, I want to order: ${product}`);
-  window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
-}
-function openInstagram() {
-  window.open("https://instagram.com/wearmodernaura", "_blank");
-}
-
-// scroll animation
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
+    // Create dots
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlide(i);
+      dots.appendChild(dot);
     }
-  });
-});
 
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+      document.querySelectorAll('.dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
 
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlider();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlider();
+    }
+
+    function goToSlide(n) {
+      currentSlide = n;
+      updateSlider();
+    }
+
+    // Auto-play slider
+    setInterval(nextSlide, 4000);
+
+    // CONTACT FUNCTIONS
+    function contactViaInstagram() {
+      window.open('https://instagram.com/wearmodernaura', '_blank');
+    }
+
+    function contactViaWhatsApp() {
+      window.open('https://wa.me/917078817575?text=Hi%20Modern%20Aura%2C%20I%20want%20to%20order%20a%20tee!', '_blank');
+    }
+
+    // SMOOTH SCROLL
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // SCROLL ANIMATIONS
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.product-card, .step, .testimonial').forEach(el => {
+      el.style.opacity = '0';
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
